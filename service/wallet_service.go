@@ -13,12 +13,14 @@ type WalletService struct {
 func (serv WalletService) NewHDWallet(req models.HDWalletReq) (resp models.HDWalletResp, err error) {
 	mnemonic := req.Mnemonic
 	if mnemonic == "" || len(mnemonic) <= 0 {
+		//无助记词 自动生成
 		mnemonic, err = util.NewMnemonic()
 		if err != nil {
 			log.Println(err)
 			return models.HDWalletResp{}, constant.HD_WALLET_GENERATE_ERROR
 		}
 	}
+	//从助记词生成种子
 	seed := util.NewFromSeed(mnemonic)
 	pubKeyS, address, err := util.GenerateHDWalletSegWitAddress(seed, req.Index)
 	if err != nil {
