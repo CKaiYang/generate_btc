@@ -21,8 +21,19 @@ func (serv WalletService) NewHDWallet(req models.HDWalletReq) (resp models.HDWal
 		}
 	}
 	//从助记词生成种子
-	seed := util.NewFromSeed(mnemonic)
-	pubKeyS, address, err := util.GenerateHDWalletSegWitAddress(seed, req.Index)
+	seed, err := util.NewFromSeed(mnemonic)
+	if err != nil {
+		log.Println(err)
+		return models.HDWalletResp{}, constant.HD_WALLET_GENERATE_ERROR
+	}
+
+	path := util.NewPath(req.Path)
+	if path == nil {
+		// 指定路径错误
+		return models.HDWalletResp{}, constant.HD_WALLET_GENERATE_ERROR
+	}
+
+	pubKeyS, address, err := util.GenerateHDWalletSegWitAddress(seed, path)
 	if err != nil {
 		log.Println(err)
 		return models.HDWalletResp{}, constant.HD_WALLET_GENERATE_ERROR

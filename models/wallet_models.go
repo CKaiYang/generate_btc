@@ -4,7 +4,7 @@ type HDWalletReq struct {
 	// 助记词
 	Mnemonic string `json:"mnemonic"`
 	// 指定层级
-	Index uint32 `json:"index"`
+	Path string `json:"path"`
 }
 
 type HDWalletResp struct {

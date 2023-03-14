@@ -5,6 +5,7 @@ go 1.20
 require (
 	github.com/btcsuite/btcd v0.20.1-beta
 	github.com/btcsuite/btcutil v1.0.2
+	github.com/foxnut/go-hdwallet v0.0.0-20200602072018-8db9c730e77c
 	github.com/kataras/iris/v12 v12.2.0
 	github.com/tyler-smith/go-bip39 v1.1.0
 	gopkg.in/yaml.v3 v3.0.1
@@ -20,7 +21,9 @@ require (
 	github.com/aymerick/douceur v0.2.0 // indirect
 	github.com/blang/semver/v4 v4.0.0 // indirect
 	github.com/btcsuite/btclog v0.0.0-20170628155309-84c8d2346e9f // indirect
+	github.com/cpacia/bchutil v0.0.0-20181003130114-b126f6a35b6c // indirect
 	github.com/eknkc/amber v0.0.0-20171010120322-cdade1c07385 // indirect
+	github.com/ethereum/go-ethereum v1.9.13 // indirect
 	github.com/fatih/structs v1.1.0 // indirect
 	github.com/flosch/pongo2/v4 v4.0.2 // indirect
 	github.com/gobwas/httphead v0.1.0 // indirect
