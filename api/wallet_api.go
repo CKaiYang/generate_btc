@@ -12,6 +12,8 @@ type WalletApi struct {
 	Serv *service.WalletService
 }
 
+// PostNewHdWallet
+// POST /wallet/new/hd/wallet
 func (api WalletApi) PostNewHdWallet(req models.HDWalletReq) {
 	resp, err := api.Serv.NewHDWallet(req)
 	if err != nil {
@@ -21,6 +23,8 @@ func (api WalletApi) PostNewHdWallet(req models.HDWalletReq) {
 	util.CommonResultSuccess(api.Ctx, &resp)
 }
 
+// PostGenerateMulAddress
+// POST /wallet/generate/mul/address
 func (api WalletApi) PostGenerateMulAddress(req models.MulAddressReq) {
 	resp, err := api.Serv.MulAddress(req)
 	if err != nil {

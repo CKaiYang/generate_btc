@@ -12,11 +12,10 @@ import (
 func Configure(app *iris.Application) {
 	//跨域设置
 	crs := CORS("")
-
 	app.Use(crs)
-
 	app.AllowMethods(iris.MethodOptions)
 
+	// 错误响应
 	app.OnErrorCode(iris.StatusNotFound, func(ctx *context.Context) {
 		util.CommonResultFailure(ctx, iris.StatusNotFound, iris.ErrNotFound.Error())
 	})
@@ -27,11 +26,13 @@ func Configure(app *iris.Application) {
 
 	// 应用 context path
 	v1 := app.Party("/")
-	wallet := mvc.New(v1.Party("/wallet"))
-	//依赖注入
-	wallet.Register(new(service.WalletService))
-	wallet.Handle(new(api.WalletApi))
-
+	{
+		// 钱包模块
+		wallet := mvc.New(v1.Party("/wallet"))
+		//依赖注入
+		wallet.Register(new(service.WalletService))
+		wallet.Handle(new(api.WalletApi))
+	}
 }
 
 func CORS(allowedOrigin string) iris.Handler { // or "github.com/iris-contrib/middleware/cors"

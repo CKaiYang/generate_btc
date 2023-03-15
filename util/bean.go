@@ -18,6 +18,7 @@ func DeepFields(ifaceType reflect.Type) []reflect.StructField {
 	return fields
 }
 
+// StructCopy 结构体深复制
 func StructCopy(DstStructPtr interface{}, SrcStructPtr interface{}) error {
 	srcv := reflect.ValueOf(SrcStructPtr)
 	dstv := reflect.ValueOf(DstStructPtr)
